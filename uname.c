@@ -27,8 +27,7 @@ int main(int argc, char *argv[]) {
 	struct utsname info;
 	uname(&info);
 
-	/* To check if no arguments passed or print if -a argument is passed */
-	
+	/* To check if number of arguments is less than 2 and if it matches switches  */
 	if( ( argc < 2 ) || ( (strcmp("-s", argv[1]) == 0 ) || (strcmp("--kernel-name", argv[1]) == 0 ) ) ){	
 
 		/* For -s or --kernel-name switches in argument 1, print only the name of operating system */
