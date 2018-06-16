@@ -11,6 +11,9 @@ int help() {
 	printf("Usage: uname [OPTION]...\n");
 	printf("Possible supported OPTION:\n");
 	printf("\t-s, --kernel-name \t Print kernel/operating system name\n"); 
+	printf("\t-r, --kernel-release \t Print kernel release\n");
+	printf("\t-v, --kernel-version \t Print kernel version\n");
+	printf("\t-m, --machine \t\t Print machine, hardware or processor details\n");
 	printf("\t-a, --all \t\t Print OS, Kernel release and version, Hardware information\n");
 	printf("\t-h, --help \t\t Print help information\n");
 	printf("If no arguments are passed, default OPTION is -s\n");
@@ -41,6 +44,18 @@ int main(int argc, char *argv[]) {
 		printf("Linux kernel Release Number: %s\n", info.release);
 		printf("Linux Kernel Version Level: %s\n", info.version);
 		printf("Hardware Platform Info: %s\n", info.machine);
+	} else if( (strcmp("-r", argv[1]) == 0 ) || (strcmp("--kernel-release", argv[1]) == 0 ) ){
+		
+		/* For -r or --kernel-release switches in argument 1, return release info */
+		printf("%s\n", info.release);
+	} else if( (strcmp("-v", argv[1]) == 0 ) || (strcmp("--kernel-version", argv[1]) == 0 ) ){
+		
+		/* For -v or --kernel-version switches in argument 1, return version info */
+		printf("%s\n", info.version);
+	} else if( (strcmp("-m", argv[1]) == 0 ) || (strcmp("--machine", argv[1]) == 0 ) ){
+
+		/* For -m or --machine switches in argument 1, return machine info */
+		printf("%s\n", info.machine);
 	} else if( (strcmp("-h", argv[1]) == 0 ) || (strcmp("--help", argv[1]) == 0 ) ) {
 		
 		/* For -h or --help switches in argument 1, return help */
