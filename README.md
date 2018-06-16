@@ -5,7 +5,7 @@ Implementation of linux commands to learn C
 
 
 ## Execution of indiviual commands
-gcc <command.c> -o <command>
+gcc <command.c> -o \<command>
 
 eg. 
 
