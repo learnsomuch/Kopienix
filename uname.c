@@ -36,7 +36,7 @@ int main(int argc, char *argv[]) {
 		/* For -s or --kernel-name switches in argument 1, print only the name of operating system */
 			printf("%s\n", info.sysname);
 			
-	} else if( (strcmp("-a", argv[1]) == 0 ) || (strcmp("--all", argv[1]) == 0 ) ){
+	} else if( ( argc < 2 ) || ( (strcmp("-a", argv[1]) == 0 ) || (strcmp("--all", argv[1]) == 0 ) ) ){
 
 		/* For -a or --all switches in argument 1, return these Supported fields */
 		/* Supported fields: sysname, release, version, machine, node and domain */
@@ -44,19 +44,19 @@ int main(int argc, char *argv[]) {
 		printf("Linux kernel Release Number: %s\n", info.release);
 		printf("Linux Kernel Version Level: %s\n", info.version);
 		printf("Hardware Platform Info: %s\n", info.machine);
-	} else if( (strcmp("-r", argv[1]) == 0 ) || (strcmp("--kernel-release", argv[1]) == 0 ) ){
+	} else if( ( argc < 2 ) || ( (strcmp("-r", argv[1]) == 0 ) || (strcmp("--kernel-release", argv[1]) == 0 ) ) ){
 		
 		/* For -r or --kernel-release switches in argument 1, return release info */
 		printf("%s\n", info.release);
-	} else if( (strcmp("-v", argv[1]) == 0 ) || (strcmp("--kernel-version", argv[1]) == 0 ) ){
+	} else if( ( argc < 2 ) || ( (strcmp("-v", argv[1]) == 0 ) || (strcmp("--kernel-version", argv[1]) == 0 ) ) ){
 		
 		/* For -v or --kernel-version switches in argument 1, return version info */
 		printf("%s\n", info.version);
-	} else if( (strcmp("-m", argv[1]) == 0 ) || (strcmp("--machine", argv[1]) == 0 ) ){
+	} else if( ( argc < 2 ) || ( (strcmp("-m", argv[1]) == 0 ) || (strcmp("--machine", argv[1]) == 0 ) ) ){
 
 		/* For -m or --machine switches in argument 1, return machine info */
 		printf("%s\n", info.machine);
-	} else if( (strcmp("-h", argv[1]) == 0 ) || (strcmp("--help", argv[1]) == 0 ) ) {
+	} else if( ( argc < 2 ) || ( (strcmp("-h", argv[1]) == 0 ) || (strcmp("--help", argv[1]) == 0 ) ) ){
 		
 		/* For -h or --help switches in argument 1, return help */
 		return help();
