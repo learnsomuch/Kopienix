@@ -12,10 +12,12 @@ eg.
     gcc date.c -o ../bin/date
     gcc uname.c -o ../bin/uname
     gcc pwd.c -o ../bin/pwd
+    gcc whoami.c -o ../bin/whoami
 
 ## Current list of commands inside bin directory
     ./date
     ./uname
     ./pwd
+    ./whoami
     
 uname supports help function (./uname --help) displays list of possible options.
