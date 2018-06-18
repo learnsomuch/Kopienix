@@ -5,7 +5,7 @@
 #include <pwd.h>
 
 /* Main Function */
-int main(int argc, char *argv[])
+int main()
 {
   /* Variables */
   /* initialize passwd struct */
@@ -22,7 +22,7 @@ int main(int argc, char *argv[])
   /* Check if password is not null */
   if (password != NULL) {
         /* Fetch pw_name from struct of password */
-	printf("%s", password->pw_name);
+	printf("%s\n", password->pw_name);
   }
   
   /* Success return code */

@@ -7,12 +7,14 @@
 /* Main Function */
 int main() {
 
-   /* Variables - initializing buf as char with size of FILENAME_MAX. FILENAME_MAX is defined in stdio.h */
-   char buf[FILENAME_MAX];
+	/* Variables - initializing buf as char with size of FILENAME_MAX. FILENAME_MAX is defined in stdio.h */
+   	char buf[FILENAME_MAX];
 	
-   /* Using getcwd inbuildi where it takes buffer and its size - refer: http://pubs.opengroup.org/onlinepubs/9699919799/functions/getcwd.html */
-   if (getcwd(buf, sizeof(buf)) != NULL) {
-	printf("%s\n", buf);
-   }
-   return 0;
+   	/* Using getcwd inbuildi where it takes buffer and its size - refer: http://pubs.opengroup.org/onlinepubs/9699919799/functions/getcwd.html */
+   	if (getcwd(buf, sizeof(buf)) != NULL) {
+		printf("%s\n", buf);
+   	}
+   	
+	/* Success return code */
+	return 0;
 }

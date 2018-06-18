@@ -65,6 +65,7 @@ int main(int argc, char *argv[]) {
 		/* For all other cases, return help */
 		return help();
 	}
+	
 	/* Success return code */
 	return 0;
 }
