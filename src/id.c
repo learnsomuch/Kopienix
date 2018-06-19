@@ -4,6 +4,26 @@
 #include <stdio.h>
 #include <pwd.h>
 
+/* Helper function */
+int help() {
+
+	/* Print supported options */
+	printf("Usage: id [OPTION]...\n");
+	printf("Possible supported OPTION:\n");
+	printf("\t-a, --all \t\t Print all details\n");
+	printf("\t-u, --user-id \t\t Print user id\n");
+	printf("\t-g, --group-id \t\t Print group id\n");
+	printf("\t-l, --login-name \t Print user login name\n");
+	printf("\t-f, --full-name \t Print user full name\n");
+	printf("\t-h, --help \t\t Print help information\n");
+	printf("If no arguments are passed, default OPTION is -a\n");
+	printf("If wrong arguments are passed, default OPTION is -h\n");
+	
+	/* Exit with return code 1 */
+	return 1;
+}
+
+
 /* Main Function */
 int main(int argc, char *argv[]) {
 	
@@ -19,7 +39,7 @@ int main(int argc, char *argv[]) {
   	/* get passwd uid */
   	pw = getpwuid(uid);
 
-	if(argv[1] == NULL) {
+	if((argv[1] == NULL) || ((strcmp("-a", argv[1]) == 0) || (strcmp("--all", argv[1]) == 0))) {
 
 		/* Default print - uid with uid number and user, group id with username */
 		printf("uid=%d(%s), gid=%d(%s)\n", pw->pw_uid, pw->pw_name, pw->pw_gid, pw->pw_name);
@@ -39,12 +59,23 @@ int main(int argc, char *argv[]) {
 		/* Print user id */
 		printf("User id: %d\n", pw->pw_uid);
 
-	}else if((strcmp("-l", argv[1]) == 0) || (strcmp("--login-name", argv[1]) == 0)) {
+	} else if((strcmp("-l", argv[1]) == 0) || (strcmp("--login-name", argv[1]) == 0)) {
 		
 		/* Print user login name */
 		printf("Login Name: %s\n", pw->pw_name);
-	}
+	
+	} else if((strcmp("-h", argv[1]) == 0) || (strcmp("--help", argv[1]) == 0)) {
  
+		/* For all other cases, return help */
+		return help();
+
+	} else {
+
+		/* For all other cases, return help */
+		return help();
+
+	}
+
   	/* Success return code */
   	return 0;
 }
