@@ -13,11 +13,17 @@ eg.
     gcc uname.c -o ../bin/uname
     gcc pwd.c -o ../bin/pwd
     gcc whoami.c -o ../bin/whoami
+    gcc id.c -o ../bin/id
 
 ## Current list of commands inside bin directory
     ./date
     ./uname
     ./pwd
     ./whoami
+    ./id
     
-uname supports help function (./uname --help) displays list of possible options.
+## Supported Help functions
+Here, help function displays list of possible options.
+    
+    ./uname --help
+    ./id --help
