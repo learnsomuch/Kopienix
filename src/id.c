@@ -1,8 +1,10 @@
 /* Header files
    pwd.h - https://www.mkssoftware.com/docs/man5/struct_passwd.5.asp
+   grp.h - http://pubs.opengroup.org/onlinepubs/7908799/xsh/grp.h.html
    stdio.h - For output */
 #include <stdio.h>
 #include <pwd.h>
+#include <grp.h>
 
 /* Helper function */
 int help() {
@@ -28,21 +30,28 @@ int help() {
 int main(int argc, char *argv[]) {
 	
 	/* Variables */
-  	/* initialize passwd struct */
+  	/* Initialize passwd struct */
   	struct passwd *pw;
+	/* Initialize group struct */
+	struct group *gp;
+
   	/* uid_t numerical user ID */
   	uid_t uid;
+	uid_t gid;	
 
   	/* Get uid */
   	uid = geteuid();
-
+	
   	/* get passwd uid */
   	pw = getpwuid(uid);
+
+	/* Get group struct based on the pw_gid */
+        gp = getgrgid(pw->pw_gid);
 
 	if((argv[1] == NULL) || ((strcmp("-a", argv[1]) == 0) || (strcmp("--all", argv[1]) == 0))) {
 
 		/* Default print - uid with uid number and user, group id with username */
-		printf("uid=%d(%s), gid=%d(%s)\n", pw->pw_uid, pw->pw_name, pw->pw_gid, pw->pw_name);
+		printf("uid=%d(%s), gid=%d(%s)\n", pw->pw_uid, pw->pw_name, pw->pw_gid, gp->gr_name);
 
 	} else if((strcmp("-f", argv[1]) == 0) || (strcmp("--full-name", argv[1]) == 0)){
 		
