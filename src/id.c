@@ -13,8 +13,8 @@ int help() {
 	printf("Usage: id [OPTION]...\n");
 	printf("Possible supported OPTION:\n");
 	printf("\t-a, --all \t\t Print all details\n");
-	printf("\t-u, --user-id \t\t Print user id\n");
-	printf("\t-g, --group-id \t\t Print group id\n");
+	printf("\t-u, --user \t\t Print user details\n");
+	printf("\t-g, --group \t\t Print group details\n");
 	printf("\t-l, --login-name \t Print user login name\n");
 	printf("\t-f, --full-name \t Print user full name\n");
 	printf("\t-h, --help \t\t Print help information\n");
@@ -51,22 +51,24 @@ int main(int argc, char *argv[]) {
 	if((argv[1] == NULL) || ((strcmp("-a", argv[1]) == 0) || (strcmp("--all", argv[1]) == 0))) {
 
 		/* Default print - uid with uid number and user, group id with username */
-		printf("uid=%d(%s), gid=%d(%s)\n", pw->pw_uid, pw->pw_name, pw->pw_gid, gp->gr_name);
+		printf("uid=%d(%s), gid=%d(%s), full-name=%s\n", pw->pw_uid, pw->pw_name, pw->pw_gid, gp->gr_name, pw->pw_gecos);
 
 	} else if((strcmp("-f", argv[1]) == 0) || (strcmp("--full-name", argv[1]) == 0)){
 		
 		/* Print full name */
 		printf("Full Name: %s\n", pw->pw_gecos);
 	
-	} else if((strcmp("-g", argv[1]) == 0) || (strcmp("--group-id", argv[1]) == 0)) {
+	} else if((strcmp("-g", argv[1]) == 0) || (strcmp("--group", argv[1]) == 0)) {
 		
-		/* Print group id */
+		/* Print group details */
 		printf("Group id: %d\n", pw->pw_gid);
+		printf("Group name: %s\n", gp->gr_name);
 
-	} else if((strcmp("-u", argv[1]) == 0) || (strcmp("--user-id", argv[1]) == 0)) {
+	} else if((strcmp("-u", argv[1]) == 0) || (strcmp("--user", argv[1]) == 0)) {
 		
-		/* Print user id */
+		/* Print user details */
 		printf("User id: %d\n", pw->pw_uid);
+		printf("User name: %s\n", pw->pw_name);
 
 	} else if((strcmp("-l", argv[1]) == 0) || (strcmp("--login-name", argv[1]) == 0)) {
 		
