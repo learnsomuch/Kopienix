@@ -25,7 +25,6 @@ int help() {
 	return 1;
 }
 
-
 /* Main Function */
 int main(int argc, char *argv[]) {
 	
@@ -75,13 +74,17 @@ int main(int argc, char *argv[]) {
 		/* Print user login name */
 		printf("Login Name: %s\n", pw->pw_name);
 	
+	} else if(strcmp(pw->pw_name, argv[1]) == 0) {
+	
+		printf("%d\n", pw->pw_uid);
+	
 	} else if((strcmp("-h", argv[1]) == 0) || (strcmp("--help", argv[1]) == 0)) {
  
 		/* For all other cases, return help */
 		return help();
 
 	} else {
-
+		
 		/* For all other cases, return help */
 		return help();
 
