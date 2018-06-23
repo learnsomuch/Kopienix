@@ -27,3 +27,6 @@ Here, help function displays list of possible options.
     
     ./uname --help
     ./id --help
+
+## License
+MIT
