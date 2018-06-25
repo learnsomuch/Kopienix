@@ -29,8 +29,10 @@ int help() {
 int main(int argc, char *argv[]) {
 	
 	/* Variables */
-  	/* Initialize passwd struct */
-  	struct passwd *pw;
+	long buflen = 1024;
+  	char buf[buflen];
+  	/* Initialize passwd struct where p and *pwr is used for getpwnam_r */
+  	struct passwd p, *pw, *pwr;
 	/* Initialize group struct */
 	struct group *gp;
 
@@ -41,6 +43,13 @@ int main(int argc, char *argv[]) {
   	/* Get uid */
   	uid = geteuid();
 	
+	if(argv[1] != NULL) {
+
+		/* Reference: https://www.ibm.com/support/knowledgecenter/ssw_ibm_i_71/apis/gtpwnamr.htm
+		   First argument is a pointer to user profile name, p is a pointer to passwd structure, buf is pointer to buffer, buflen is size of buffer and pwr is the result pointer to a location */
+		getpwnam_r(argv[1], &p, buf, buflen, &pwr);
+	}
+
   	/* get passwd uid */
   	pw = getpwuid(uid);
 
@@ -74,9 +83,10 @@ int main(int argc, char *argv[]) {
 		/* Print user login name */
 		printf("Login Name: %s\n", pw->pw_name);
 	
-	} else if(strcmp(pw->pw_name, argv[1]) == 0) {
+	} else if(argv[1] != NULL) {
 	
-		printf("%d\n", pw->pw_uid);
+		/* To validate first argument for username */
+		printf("%i\n", pwr->pw_uid);
 	
 	} else if((strcmp("-h", argv[1]) == 0) || (strcmp("--help", argv[1]) == 0)) {
  
