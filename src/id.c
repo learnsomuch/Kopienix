@@ -12,6 +12,7 @@ int help() {
 	/* Print supported options */
 	printf("Usage: id [OPTION]...\n");
 	printf("Possible supported OPTION:\n");
+	printf("\t<username> \t\t Provide username to get that specific user id details\n");
 	printf("\t-a, --all \t\t Print all details\n");
 	printf("\t-u, --user \t\t Print user details\n");
 	printf("\t-g, --group \t\t Print group details\n");
@@ -83,16 +84,16 @@ int main(int argc, char *argv[]) {
 		/* Print user login name */
 		printf("Login Name: %s\n", pw->pw_name);
 	
-	} else if(argv[1] != NULL) {
+	} else if((strcmp("-h", argv[1]) == 0) || (strcmp("--help", argv[1]) == 0)) {
+
+                /* For all other cases, return help */
+                return help();
+
+	} else if((argv[1] != NULL) && (pwr != NULL)) {
 	
 		/* To validate first argument for username */
 		printf("%i\n", pwr->pw_uid);
 	
-	} else if((strcmp("-h", argv[1]) == 0) || (strcmp("--help", argv[1]) == 0)) {
- 
-		/* For all other cases, return help */
-		return help();
-
 	} else {
 		
 		/* For all other cases, return help */
