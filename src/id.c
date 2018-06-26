@@ -92,7 +92,7 @@ int main(int argc, char *argv[]) {
 	} else if((argv[1] != NULL) && (pwr != NULL)) {
 	
 		/* To validate first argument for username */
-		printf("%i\n", pwr->pw_uid);
+		printf("Username: %s\nUser ID: %u\nGroup ID: %u\nInitial dir: %s\n", pwr->pw_name, pwr->pw_uid, pwr->pw_gid, pwr->pw_dir);
 	
 	} else {
 		
