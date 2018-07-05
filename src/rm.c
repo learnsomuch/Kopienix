@@ -27,7 +27,7 @@ int main(int argc, char *argv[]) {
 	int flag = 0;
 
 	/* Validation */
-	if((strcmp("-h", argv[1]) == 0) || (strcmp("--help", argv[1]) == 0)) {
+	if((argv[1] == NULL) || ((strcmp("-h", argv[1]) == 0) || (strcmp("--help", argv[1]) == 0))) {
 		
 		return help();
 	}
