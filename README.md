@@ -14,6 +14,9 @@ eg.
     gcc pwd.c -o ../bin/pwd
     gcc whoami.c -o ../bin/whoami
     gcc id.c -o ../bin/id
+    gcc dir.c -o ../bin/id
+    gcc ls.c -o ../bin/ls
+
 
 ## Current list of commands inside bin directory
     ./date
@@ -21,12 +24,15 @@ eg.
     ./pwd
     ./whoami
     ./id
+    ./dir
+    ./ls
     
 ## Supported Help functions
 Here, help function displays list of possible options.
     
     ./uname --help
     ./id --help
+    ./ls --help
 
 ## License
 MIT
