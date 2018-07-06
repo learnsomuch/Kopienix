@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# Compile all commands c program to executable commands
+
+for cmd in src/*.c;
+do
+	gcc ${cmd} -o bin/$(basename ${cmd%.*});
+done
