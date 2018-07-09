@@ -12,8 +12,6 @@ gcc <command.c> -o \<command>
 eg. 
 
     gcc date.c -o ../bin/date
-   
-
 
 ## Current list of commands inside bin directory
     ./date
@@ -24,6 +22,9 @@ eg.
     ./dir
     ./ls
     ./rm <filename>
+    ./cat <filename>
+    ./hostname
+    ./nslookup <web address>
     
 ## Supported Help functions
 Here, help function displays list of possible options.
@@ -32,6 +33,8 @@ Here, help function displays list of possible options.
     ./id --help
     ./ls --help
     ./rm --help
+    ./nslookup --help
+    ./cat --help
 
 ## License
-MIT
+MIT 2018
