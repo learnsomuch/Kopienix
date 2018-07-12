@@ -25,6 +25,9 @@ eg.
     ./cat <filename>
     ./hostname
     ./nslookup <web address>
+    ./uptime
+    ./who
+    
     
 ## Supported Help functions
 Here, help function displays list of possible options.
