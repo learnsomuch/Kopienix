@@ -44,15 +44,16 @@ int main() {
 		/* Print details to screen */
 		printf("%02d:%02d:%02d up %u days, %dh:%dm:%ds, load average: %.2f, %.2f, %.2f\n",string_time->tm_hour, string_time->tm_min, string_time->tm_sec, days, hours, mins, secs, loads0, loads1, loads2);
 
-		printf("USER \tTTY \tFROM\n");
+		printf("USER \tTTY \tFROM \tSESSION \tID \t\tPID\n");
 		while(utmp_details) {
 
                 	/* Check if ut_type from the utmp_details matches to USER_PROCESS or LOGIN_PROCESS */
                 	if(utmp_details->ut_type == USER_PROCESS) {
 
                         	/* Print details to screen */
-                        	printf("%s\t%s\t%s\n", utmp_details->ut_user, utmp_details->ut_line, utmp_details->ut_host);
-                	}
+                        	printf("%s\t%s\t%s\t", utmp_details->ut_user, utmp_details->ut_line, utmp_details->ut_host);
+                		printf("%zu\t%s\t%u\n", (long) utmp_details->ut_session, utmp_details->ut_id, utmp_details->ut_pid);
+			}
 
                 	/* For Adjustment - to next position of utmp file */
                 	utmp_details = getutent();
