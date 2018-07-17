@@ -27,6 +27,8 @@ eg.
     ./nslookup <web address>
     ./uptime
     ./who
+    ./w
+    ./free
     
     
 ## Supported Help functions
@@ -38,6 +40,7 @@ Here, help function displays list of possible options.
     ./rm --help
     ./nslookup --help
     ./cat --help
+    ./free --help
 
 ## License
 MIT 2018
