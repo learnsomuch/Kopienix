@@ -4,6 +4,23 @@
 #include <stdio.h>
 #include <sys/sysinfo.h>
 
+/* Helper function */
+int help() {
+
+	/* Print supported options */
+	printf("Usage: free [OPTION]...\n");
+	printf("Possible supported OPTION:\n");
+	printf("\t-k, --KB \t\t Print memory details in kilobytes\n");
+	printf("\t-m, --MB \t\t Print memory details in megabytes\n");
+	printf("\t-m, --GB \t\t Print memory details in gigabytes\n");
+	printf("If no arguments are passed, default OPTION is -b\n");
+	printf("If wrong arguments are passed, default OPTION is -h\n");
+	
+	/* Exit with return code 1 */
+	return 1;
+}
+
+
 int main(int argc, char *argv[]) {
 
 	
@@ -43,6 +60,8 @@ int main(int argc, char *argv[]) {
 		        tram = tram / GB;
                         printf("Total RAM in GB: %zu\n", tram);
                 
+		} else {
+			return help();
 		}
 		
 	}
