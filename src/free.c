@@ -15,6 +15,7 @@ int help() {
 	printf("\t-m, --MB \t\t Print memory details in megabytes\n");
 	printf("\t-m, --GB \t\t Print memory details in gigabytes\n");
 	printf("\t    --TB \t\t Print memory details in terabytes\n");
+	printf("\t-h, --help \t\t Print help function\n");
 	printf("If no arguments are passed, default OPTION is -b\n");
 	printf("If wrong arguments are passed, default OPTION is -h\n");
 	
@@ -25,6 +26,7 @@ int help() {
 /* print to screen */
 void screen(unsigned long tram, unsigned long fram, unsigned long sram, unsigned long bram, unsigned long tswap, unsigned long fswap) {
 
+	printf("******************\n");
 	printf("Memory Information\n");
 	printf("******************\n");
 	printf("total: %zu\n", tram);
@@ -34,6 +36,7 @@ void screen(unsigned long tram, unsigned long fram, unsigned long sram, unsigned
 	printf("buffers: %zu\n", bram); 
 	printf("******************\n");
 	printf("Swap Information\n");
+	printf("******************\n");
 	printf("total swap: %zu\n", tswap);
 	printf("used swap: %zu\n", tswap - fswap);
 	printf("free swap: %zu\n", fswap);

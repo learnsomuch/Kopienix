@@ -1,8 +1,10 @@
 /* Header files
    stdio.h for output
-   dirent.h is for directory related topics */
+   dirent.h is for directory related topics
+   unistd.h - for access() */
 #include <stdio.h>
 #include <dirent.h>
+#include <unistd.h>
 
 /* Helper function */
 int help() {
@@ -39,7 +41,50 @@ int main(int argc, char *argv[]) {
 		} else {
 
 			if((argv[1] == NULL) || ((strcmp("-a", argv[1]) == 0) || (strcmp("--all", argv[1]) == 0))) {
-				printf("%s\n", d->d_name);
+				
+				/* Permission */
+				/* - for file, d for directory, l for link */
+
+				if(d->d_type == DT_REG) {
+					
+					printf("-");
+				
+				} else if(d->d_type == DT_DIR) {
+				
+					printf("d");
+				
+				} else if(d->d_type == DT_LNK) {
+				
+					printf("l");
+				}
+				
+				/* read r, write w, execute x */
+				if(access(d->d_name, R_OK) != -1) {
+					printf("r");
+				} else {
+					printf("-");
+				}
+ 
+				if(access(d->d_name, W_OK) != -1) {
+					printf("w");
+				} else {
+					printf("-");
+				}
+
+				if(access(d->d_name, X_OK) != -1) {
+					printf("x");
+				} else {
+					printf("-");
+				}
+
+				/* PENDING: read r, write w, execute x for members of group owning file;
+                                     read r, write w, execute x for other users; */
+
+				if(d->d_type == DT_DIR) {
+					printf("   %s/\n", d->d_name);
+				} else {
+					printf("   %s\n", d->d_name);
+				}
 			}
 			count++;
 		}	
