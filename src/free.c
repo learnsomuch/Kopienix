@@ -23,7 +23,7 @@ int help() {
 }
 
 /* print to screen */
-void screen(unsigned long tram, unsigned long fram, unsigned long sram, unsigned long bram) {
+void screen(unsigned long tram, unsigned long fram, unsigned long sram, unsigned long bram, unsigned long tswap, unsigned long fswap) {
 
 	printf("Memory Information\n");
 	printf("******************\n");
@@ -32,7 +32,11 @@ void screen(unsigned long tram, unsigned long fram, unsigned long sram, unsigned
 	printf("free: %zu\n", fram);
 	printf("shared: %zu\n", sram);
 	printf("buffers: %zu\n", bram); 
-
+	printf("******************\n");
+	printf("Swap Information\n");
+	printf("total swap: %zu\n", tswap);
+	printf("used swap: %zu\n", tswap - fswap);
+	printf("free swap: %zu\n", fswap);
 }
 
 int main(int argc, char *argv[]) {
@@ -47,7 +51,7 @@ int main(int argc, char *argv[]) {
   	static int MB = 1024 * 1024;
   	static int KB = 1024;
 
-	unsigned long tram, fram, sram, bram;
+	unsigned long tram, fram, sram, bram, tswap, fswap;
 				
 	if(sysinfo(&sinfo) == 0) {
 	
@@ -56,10 +60,12 @@ int main(int argc, char *argv[]) {
 		fram = sinfo.freeram;	
 		sram = sinfo.sharedram;
 		bram = sinfo.bufferram;
-	
+		tswap = sinfo.totalswap;
+		fswap = sinfo.freeswap;	
+
 		if((argv[1] == NULL) || ((strcmp("-b", argv[1]) == 0) || (strcmp("--B", argv[1]) == 0))) {	
 
-			screen(tram, fram, sram, bram);	
+			screen(tram, fram, sram, bram, tswap, fswap);	
 
 		} else if((strcmp("-k", argv[1]) == 0) || (strcmp("--KB", argv[1]) == 0)) {
                         
@@ -67,8 +73,10 @@ int main(int argc, char *argv[]) {
 			fram = fram / KB;
 			sram = sram / KB;
 			bram = bram / KB;
+			tswap = tswap / KB;
+			fswap = fswap / KB;
 
-			screen(tram, fram, sram, bram);
+			screen(tram, fram, sram, bram, tswap, fswap);
 
                 } else if((strcmp("-m", argv[1]) == 0) || (strcmp("--MB", argv[1]) == 0)) {
 		
@@ -76,8 +84,10 @@ int main(int argc, char *argv[]) {
 			fram = fram / MB;
 			sram = sram / MB;
                         bram = bram / MB;
+			tswap = tswap / MB;
+                        fswap = fswap / MB;
 
-			screen(tram, fram, sram, bram);	
+			screen(tram, fram, sram, bram, tswap, fswap);	
 
 		} else if((strcmp("-g", argv[1]) == 0) || (strcmp("--GB", argv[1]) == 0)) {
                 
@@ -85,8 +95,10 @@ int main(int argc, char *argv[]) {
 			fram = fram / GB;
 			sram = sram / GB;
                         bram = bram / GB;
+			tswap = tswap / GB;
+                        fswap = fswap / GB;
 
-			screen(tram, fram, sram, bram);
+			screen(tram, fram, sram, bram, tswap, fswap);
 
 		} else if(strcmp("--TB", argv[1]) == 0) {
 
@@ -94,8 +106,10 @@ int main(int argc, char *argv[]) {
 			fram = fram / TB;
 			sram = sram / TB;
                         bram = bram / TB;
+			tswap = tswap / TB;
+                        fswap = fswap / TB;
 
-			screen(tram, fram, sram, bram);
+			screen(tram, fram, sram, bram, tswap, fswap);
 
                 } else {
 
