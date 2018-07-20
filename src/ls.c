@@ -1,10 +1,12 @@
 /* Header files
    stdio.h for output
    dirent.h is for directory related topics
-   unistd.h - for access() */
+   unistd.h - for access() 
+   sys/stat.h - for size of file */
 #include <stdio.h>
 #include <dirent.h>
 #include <unistd.h>
+#include <sys/stat.h>
 
 /* Helper function */
 int help() {
@@ -27,6 +29,8 @@ int main(int argc, char *argv[]) {
 
 	/* Variables */ 
 	struct dirent *d = NULL;
+	struct stat s;
+	
 	int count = NULL;
 	
 	/* Opens directory in current location */	
@@ -46,15 +50,10 @@ int main(int argc, char *argv[]) {
 				/* - for file, d for directory, l for link */
 
 				if(d->d_type == DT_REG) {
-					
 					printf("-");
-				
 				} else if(d->d_type == DT_DIR) {
-				
 					printf("d");
-				
 				} else if(d->d_type == DT_LNK) {
-				
 					printf("l");
 				}
 				
@@ -80,6 +79,11 @@ int main(int argc, char *argv[]) {
 				/* PENDING: read r, write w, execute x for members of group owning file;
                                      read r, write w, execute x for other users; */
 
+				/* Size of file using stat struct */
+				stat(d->d_name, &s);
+				printf(" %zu ", s.st_size);
+	
+				/* Print the actual file name */
 				if(d->d_type == DT_DIR) {
 					printf("   %s/\n", d->d_name);
 				} else {
