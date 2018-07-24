@@ -1,12 +1,16 @@
 /* Header files
-   stdio.h for output
-   dirent.h is for directory related topics
+   stdio.h - for output
+   dirent.h - for directory related topics
    unistd.h - for access() 
-   sys/stat.h - for size of file */
+   sys/stat.h - for size of file 
+   pwd.h - for structure of type passwd
+   grp.h - for group struct */
 #include <stdio.h>
 #include <dirent.h>
 #include <unistd.h>
 #include <sys/stat.h>
+#include <pwd.h>
+#include <grp.h>
 
 /* Helper function */
 int help() {
@@ -30,7 +34,9 @@ int main(int argc, char *argv[]) {
 	/* Variables */ 
 	struct dirent *d = NULL;
 	struct stat s;
-	
+	struct passwd *pw;
+	struct group *gr;	
+
 	int count = NULL;
 	
 	/* Opens directory in current location */	
@@ -81,6 +87,15 @@ int main(int argc, char *argv[]) {
 
 				/* Size of file using stat struct */
 				stat(d->d_name, &s);
+				/* get user and group data via struct's */
+				pw = getpwuid(s.st_uid);
+				gr = getgrgid(s.st_gid);
+
+				/* Print username and group name of the file */
+				printf(" %s ", pw->pw_name);
+				printf(" %s ", gr->gr_name);
+
+				/* Print size of the file */
 				printf(" %zu ", s.st_size);
 	
 				/* Print the actual file name */
