@@ -91,6 +91,7 @@ int main(int argc, char *argv[]) {
 				pw = getpwuid(s.st_uid);
 				gr = getgrgid(s.st_gid);
 
+				printf(" %zu ", s.st_nlink);
 				/* Print username and group name of the file */
 				printf(" %s ", pw->pw_name);
 				printf(" %s ", gr->gr_name);
