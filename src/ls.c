@@ -11,6 +11,7 @@
 #include <sys/stat.h>
 #include <pwd.h>
 #include <grp.h>
+#include <time.h>
 
 /* Helper function */
 int help() {
@@ -28,6 +29,13 @@ int help() {
 	return 1;
 }
 
+/* Last modified data in a file or directory */
+char *mdate(char *string, time_t value)
+{
+        strftime(string, 36, "%b %d %H:%M", localtime(&value));
+        return string;
+}
+
 /* Main Function */
 int main(int argc, char *argv[]) {
 
@@ -38,7 +46,10 @@ int main(int argc, char *argv[]) {
 	struct group *gr;	
 
 	int count = NULL;
-	
+
+	int days, hours, mins;
+	char date[36];
+
 	/* Opens directory in current location */	
 	DIR *di = opendir(".");
 
@@ -98,7 +109,9 @@ int main(int argc, char *argv[]) {
 
 				/* Print size of the file */
 				printf(" %zu ", s.st_size);
-	
+				
+				printf(" %s ", mdate(date, s.st_mtime));
+
 				/* Print the actual file name */
 				if(d->d_type == DT_DIR) {
 					printf("   %s/\n", d->d_name);
