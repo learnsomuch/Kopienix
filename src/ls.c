@@ -12,6 +12,7 @@
 #include <pwd.h>
 #include <grp.h>
 #include <time.h>
+#include <string.h>
 
 /* Helper function */
 int help() {
@@ -106,9 +107,14 @@ int main(int argc, char *argv[]) {
 				/* Print username and group name of the file */
 				printf(" %s ", pw->pw_name);
 				printf(" %s ", gr->gr_name);
-
+			
+				char str[10];
+				memset(str, ' ', sizeof(str));	
+				int i;
+				//for(i = 0; i <= sizeof(s.st_size); i++) { 
 				/* Print size of the file */
-				printf(" %zu ", s.st_size);
+				printf(" %*s%zu ", 1, "", s.st_size);
+				//}
 				
 				printf(" %s ", mdate(date, s.st_mtime));
 
