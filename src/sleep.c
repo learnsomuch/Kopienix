@@ -6,6 +6,8 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <stdlib.h>
+#include <string.h>
+#include <ctype.h>
 
 /* Helper function */
 int help() {
@@ -22,12 +24,13 @@ int help() {
 /* Main Function */
 int main(int argc, char *argv[]) {
 
-	
+	/* Variables */	
 	char *p;
 	long val;
 
+	/* Check if argument is null or not */
 	if(argv[1] != NULL) {
-	
+
 		/* Return 0 if not an integer */
 		val = strtol(argv[1], &p, 10);
 
@@ -35,6 +38,7 @@ int main(int argc, char *argv[]) {
                	if(val != 0) {
 			
 			sleep(val);
+
 		} else {
 
 			return help();
