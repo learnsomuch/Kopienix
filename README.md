@@ -29,6 +29,8 @@ eg.
     ./who
     ./w
     ./free
+    ./sleep <seconds>
+    ./mv <source file> <target location with file name>
     
     
 ## Supported Help functions
@@ -41,6 +43,8 @@ Here, help function displays list of possible options.
     ./nslookup --help
     ./cat --help
     ./free --help
+    ./mv --help
+    ./sleep --help
 
 ## License
 MIT 2018
