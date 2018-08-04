@@ -14,37 +14,27 @@ eg.
     gcc date.c -o ../bin/date
 
 ## Current list of commands inside bin directory
+    ./cat
     ./date
-    ./uname
-    ./pwd
-    ./whoami
-    ./id
     ./dir
-    ./ls
-    ./rm <filename>
-    ./cat <filename>
-    ./hostname
-    ./nslookup <web address>
-    ./uptime
-    ./who
-    ./w
     ./free
-    ./sleep <seconds>
+    ./hostname
+    ./id
+    ./ls
     ./mv <source file> <target location with file name>
+    ./nslookup <web address>
+    ./pwd
+    ./rm <file name>
+    ./rmdir <directory name>
+    ./sleep <seconds>
+    ./tty
+    ./uname
+    ./uptime
+    ./w
+    ./wc
+    ./whoami
+    ./who
+    ./yes    
     
-    
-## Supported Help functions
-Here, help function displays list of possible options.
-    
-    ./uname --help
-    ./id --help
-    ./ls --help
-    ./rm --help
-    ./nslookup --help
-    ./cat --help
-    ./free --help
-    ./mv --help
-    ./sleep --help
-
 ## License
 MIT 2018
