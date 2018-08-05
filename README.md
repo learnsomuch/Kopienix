@@ -5,6 +5,10 @@ Implementation of linux commands to learn C
 # Build Script
 Once you get the repository, execute the build file to generate bin folder with executable commands.
 
+    chmod +x build
+    ./build
+    
+This will build all binaries or executables stored in bin folder.
 
 ## Execution of indiviual commands from src directory
 gcc <command.c> -o \<command>
